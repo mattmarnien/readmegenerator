@@ -1,8 +1,11 @@
 var fs = require('fs');
 var axios = require('axios');
 var inquirer = require('inquirer');
+var generateReadMe = require('./generateMarkdown');
+var getUser = require('./utils/api.js');
 
-inquirer.prompt([
+function getInfo() {
+ return inquirer.prompt([
     {
     type: "input",
     message: "What is your projects Title?",
@@ -44,28 +47,35 @@ inquirer.prompt([
         name: "github"
 
     }
-]).then(response => {
-    fs.writeFile(`${title}ReadMe.md`, `<meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>${response.userName}</title>
-</head>
-<body>
-    <header class="container">
-        <h1>Hi! My Name is ${response.userName}</h1>
-    </header>
-    <p class="container">I am from ${response.userLocation}.</p>
-    <h4 class="container">Example heading <button>Contact Me</button></h4>
-    <section class="container card">
-        <div class="container list-group-item"> My Github profile is at ${response.userGH}</div>
-        <div class="container list-group-item"><a href="${response.userLI}>LinkedIn</a></div>
-    </section>
-</body>
-</html>
-`, err => {
-    if (err){
-        throw err
+])}
+
+function generateMD(data, git) {
+    fs.writeFile(`${data.title}ReadMe.md`, generateReadMe(data, git), (err) => {
+        if(err){
+            throw err;
+        }
     }
-    console.log("Readme sucessfully created")
-})
-})
+    )
+}
+
+async function makeIt() {
+    try {
+    const answers = await getInfo();
+    const gitRes = await getUser(answers.github);
+    await generateMD(answers, gitRes);
+
+    console.log("Readme Sucessfully Generated");
+
+
+} catch(err) {
+    console.log(err)
+}
+}
+
+makeIt();
+
+    // 
+    // console.log(`Readme for ${response.title} sucessfully created`)  
+
+
+

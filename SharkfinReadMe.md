@@ -1,9 +1,11 @@
 
-  # 
+  # Sharkfin
 
+ 
+
+
+  # Table of Contents: 
   
-
-  # Table of Contents:  
   I. [Installation](#installation)
   II. [Usage](#usage)
   III. [Licenses](#licenses)
@@ -14,24 +16,23 @@
   
   ## Installation
 
-  
+  Use the site
   
   ## Usage
 
-  
+  Search stocks, buy, sell, update, track over time
   
   ## Licenses
-  https://img.shields.io/badge/license-mit-critical
 
-  mit
+  MIT
   
   ## Contributions
   
-  
+  email me @
   
   ## Tests
 
-  
+  use it a lot
   
   ## Questions
 

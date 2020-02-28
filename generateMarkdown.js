@@ -1,7 +1,8 @@
+function generateMarkdown(data, git) {
+  return `
+  # ${data.title.toUpperCase()}
 
-  # 
-
-  
+  ${data.description}
 
   # Table of Contents:  
   I. [Installation](#installation)
@@ -14,24 +15,24 @@
   
   ## Installation
 
-  
+  ${data.install}
   
   ## Usage
 
-  
+  ${data.usage}
   
   ## Licenses
-  https://img.shields.io/badge/license-mit-critical
+  https://img.shields.io/badge/license-${data.licenses}-critical
 
-  mit
+  ${data.licenses}
   
   ## Contributions
   
-  
+  ${data.contributions}
   
   ## Tests
 
-  
+  ${data.tests}
   
   ## Questions
 
@@ -41,5 +42,9 @@
 
   
 
-  [image](https://avatars3.githubusercontent.com/u/60325909?v=4)
+  [image](${git.data.avatar_url})
 
+`;
+}
+
+module.exports = generateMarkdown;
