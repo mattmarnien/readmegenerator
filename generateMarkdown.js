@@ -36,6 +36,8 @@ function generateMarkdown(data, git) {
   
   ## Questions
 
+  Send questions to ${data.email}
+
  
   
   ## About the Author

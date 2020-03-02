@@ -46,7 +46,12 @@ function getInfo() {
         message: "What is your github username?",
         name: "github"
 
+    },{
+    type: "input",
+    message: "What email can you be reached at?",
+    name: "email"
     }
+    
 ])}
 
 function generateMD(data, git) {
